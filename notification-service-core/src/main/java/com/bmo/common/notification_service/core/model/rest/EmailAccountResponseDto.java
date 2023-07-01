@@ -1,4 +1,4 @@
-package com.bmo.common.notification_service.model.rest;
+package com.bmo.common.notification_service.core.model.rest;
 
 import java.util.UUID;
 import lombok.Data;

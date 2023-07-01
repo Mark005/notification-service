@@ -3,7 +3,7 @@ package com.bmo.common.notification_service.core.service.socket_sender;
 import java.util.UUID;
 import org.springframework.web.socket.WebSocketSession;
 
-public interface SocketUserService {
+public interface UserSocketService {
 
   void saveUsersSession(UUID userId, WebSocketSession session);
 

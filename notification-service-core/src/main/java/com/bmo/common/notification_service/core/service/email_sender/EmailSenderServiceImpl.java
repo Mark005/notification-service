@@ -1,6 +1,7 @@
-package com.bmo.common.notification_service.core.service;
+package com.bmo.common.notification_service.core.service.email_sender;
 
 import com.bmo.common.notification_service.core.event.AccountUpdatedEvent;
+import com.bmo.common.notification_service.core.model.email.EmailMessage;
 import com.bmo.common.notification_service.core.repository.EmailAccountRepository;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,44 +30,40 @@ public class EmailSenderServiceImpl implements EmailSenderService {
   private final EmailAccountRepository accountRepository;
 
   @EventListener
-  public void updateCachedSessions(ApplicationStartedEvent event) {
+  public void updateCachedSessionsAfterApplicationStart(ApplicationStartedEvent event) {
     updateSessions();
   }
 
   @EventListener
-  public void updateCachedSessions(AccountUpdatedEvent event) {
+  public void updateCachedSessionsAfterAccountUpdating(AccountUpdatedEvent event) {
     updateSessions();
   }
 
 
-  public void send(String test) {
+  public void send(EmailMessage emailMessage) {
     for (Map.Entry<String, Session> stringSessionEntry : emailToSession) {
       String email = stringSessionEntry.getKey();
       Session session = stringSessionEntry.getValue();
 
       log.debug("Attempt to send email with email [{}]", email);
 
-      final String target = "likethewind322@gmail.com";
-
       try {
         Message message = new MimeMessage(session);
+
+        message.setSubject(emailMessage.getSubject());
         message.setFrom(new InternetAddress(email));
-        message.setRecipients(
-            Message.RecipientType.TO,
-            InternetAddress.parse(target)
-        );
-        message.setSubject("Testing Gmail TLS");
-        message.setText("Dear Mail Crawler,"
-            + "\n\n Please do not spam my email!");
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailMessage.getTo()));
+        message.setText(emailMessage.getMessage().getPlaintext());
 
         Transport.send(message);
 
-        System.out.println("Done");
-        break;
+        log.debug("Message has been sent with email [{}]", email);
+        return;
       } catch (MessagingException e) {
-        log.warn("Error occurred while sending the message with email [{}]", email, e);
+        log.warn("Error occurred while sending email with email account [{}]", email, e);
       }
     }
+    log.warn("Message has not been sent with any of available email accounts");
   }
 
   private void updateSessions() {

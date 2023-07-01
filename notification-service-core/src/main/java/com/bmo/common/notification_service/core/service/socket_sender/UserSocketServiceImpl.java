@@ -1,8 +1,5 @@
 package com.bmo.common.notification_service.core.service.socket_sender;
 
-import com.bmo.common.gateway.header.GatewayHeader;
-import com.bmo.common.notification_service.core.exception.HeaderIsMissingException;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.HashMap;
@@ -17,7 +14,7 @@ import org.springframework.web.socket.WebSocketSession;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class SocketUserServiceImpl implements SocketUserService {
+public class UserSocketServiceImpl implements UserSocketService {
 
   private final Map<UUID, WebSocketSession> userIdToSession = new HashMap<>();
 

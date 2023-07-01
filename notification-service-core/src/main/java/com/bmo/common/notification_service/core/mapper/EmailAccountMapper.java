@@ -1,10 +1,10 @@
-package com.bmo.common.notification_service.mapper;
+package com.bmo.common.notification_service.core.mapper;
 
-import com.bmo.common.notification_service.configs.MapStructCommonConfig;
-import com.bmo.common.notification_service.dbmodel.EmailAccount;
-import com.bmo.common.notification_service.model.rest.EmailAccountCreateDto;
-import com.bmo.common.notification_service.model.rest.EmailAccountResponseDto;
-import com.bmo.common.notification_service.model.rest.EmailAccountUpdateDto;
+import com.bmo.common.notification_service.core.configs.MapStructCommonConfig;
+import com.bmo.common.notification_service.core.dbmodel.EmailAccount;
+import com.bmo.common.notification_service.core.model.rest.EmailAccountCreateDto;
+import com.bmo.common.notification_service.core.model.rest.EmailAccountResponseDto;
+import com.bmo.common.notification_service.core.model.rest.EmailAccountUpdateDto;
 import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

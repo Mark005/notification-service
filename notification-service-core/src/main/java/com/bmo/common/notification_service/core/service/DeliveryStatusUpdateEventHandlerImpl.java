@@ -1,9 +1,8 @@
-package com.bmo.common.market_service.core.service;
+package com.bmo.common.notification_service.core.service;
 
-import com.bmo.common.delivery_service.model.kafka.DeliveryStatusDto;
 import com.bmo.common.delivery_service.model.kafka.DeliveryStatusUpdateEvent;
-import com.bmo.common.market_service.core.dbmodel.UsersOrder;
-import com.bmo.common.market_service.core.dbmodel.enums.OrderStatus;
+import com.bmo.common.notification_service.core.service.notification.NotificationProcessor;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,16 +10,12 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class DeliveryStatusUpdateEventHandlerImpl implements DeliveryStatusUpdateEventHandler {
 
-  private final UsersOrderService usersOrderService;
+  private final List<NotificationProcessor<DeliveryStatusUpdateEvent>> notificationProcessors;
 
   @Override
   public void handleUpdateEvent(DeliveryStatusUpdateEvent updateEvent) {
-    if (updateEvent.getStatus() == DeliveryStatusDto.DELIVERED) {
-      UsersOrder usersOrder = usersOrderService.getOrderById(updateEvent.getOrderId());
-
-      usersOrder.setStatus(OrderStatus.ORDERED);
-
-      usersOrderService.saveAndUpdateHistory(usersOrder);
-    }
+    notificationProcessors.stream()
+        .filter(notificationProcessor -> notificationProcessor.filterNotification(updateEvent))
+        .forEach(notificationProcessor -> notificationProcessor.processNotification(updateEvent));
   }
 }

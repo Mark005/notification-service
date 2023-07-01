@@ -1,7 +1,7 @@
-package com.bmo.common.market_service.core.configs;
+package com.bmo.common.notification_service.core.configs;
 
-import com.bmo.common.market_service.core.configs.properties.KafkaClusterProperties;
-import com.bmo.common.market_service.core.configs.properties.KafkaConsumerProperties;
+import com.bmo.common.notification_service.core.configs.properties.KafkaClusterProperties;
+import com.bmo.common.notification_service.core.configs.properties.KafkaConsumerProperties;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

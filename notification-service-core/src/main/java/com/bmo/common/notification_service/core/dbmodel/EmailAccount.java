@@ -1,4 +1,4 @@
-package com.bmo.common.notification_service.dbmodel;
+package com.bmo.common.notification_service.core.dbmodel;
 
 
 import java.util.UUID;

@@ -1,9 +1,9 @@
 server:
-  port: ${APPLICATION_PORT:8083}
+  port: ${APPLICATION_PORT:8084}
 
 spring:
   datasource:
-    url: ${DATABASE_URL:jdbc:postgresql://localhost:54326/postgres?currentSchema=delivery_service_schema}
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:54326/postgres?currentSchema=notification_service_schema}
     username: ${DATABASE_USERNAME:postgres}
     password: ${DATABASE_PASSWORD:postgres}
     hikari:
@@ -17,17 +17,23 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
   liquibase:
+    enabled: false
     change-log: db/changelog/db.changelog-master.yaml
+
+kafka:
+  consumer:
+    delivery-status-event:
+      topic: ${DELIVERY_STATUS_EVENT_TOPIC:delivery-status-event-local}
+      consumer-group-id: ${DELIVERY_STATUS_EVENT_CONSUMER_GROUP:notification-service-delivery-status-event-group-local}
+      cluster:
+        bootstrap-servers: ${DELIVERY_STATUS_EVENT_BOOTSTRAP_SERVERS:localhost:9092}
 
 feign:
   client:
     config:
-      auth-service:
-        url: http://localhost:8081
+      market-service:
+        url: ${MARKET_SERVICE_URL:http://localhost:8082}
 
-kafka:
-  producer:
-    delivery-status-event:
-      topic: ${DELIVERY_STATUS_EVENT_TOPIC:delivery-status-event-local}
-      cluster:
-        bootstrap-servers: ${DELIVERY_STATUS_EVENT_BOOTSTRAP_SERVERS:localhost:9092}
+logging:
+  level:
+    com.bmo.common.notification_service: ${APPLICATION_DEBUG_LEVEL:DEBUG}

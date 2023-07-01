@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class DeliveryAcceptedNotification implements NotificationProcessor<DeliveryStatusUpdateEvent> {
+public class DeliveryFinishedNotification implements NotificationProcessor<DeliveryStatusUpdateEvent> {
 
   private final EmailSenderService emailSenderService;
   private final UserSocketService userSocketService;
@@ -23,7 +23,7 @@ public class DeliveryAcceptedNotification implements NotificationProcessor<Deliv
 
   @Override
   public boolean filterNotification(DeliveryStatusUpdateEvent event) {
-    return event.getStatus() == DeliveryStatusDto.ACCEPTED;
+    return event.getStatus() == DeliveryStatusDto.DELIVERED;
   }
 
   @Override
@@ -34,7 +34,7 @@ public class DeliveryAcceptedNotification implements NotificationProcessor<Deliv
         userId,
         DeliveryStatusUpdatedMessage.builder()
             .newDeliveryStatus(message.getStatus().name())
-            .message("Delivery status updated")
+            .message("Your order has been delivered")
             .build());
 
     if (!isSentBySocket) {
@@ -44,7 +44,7 @@ public class DeliveryAcceptedNotification implements NotificationProcessor<Deliv
           .to(user.getEmail())
           .subject("Delivery status updated")
           .message(EmailMessageContent.builder()
-              .plaintext("Your delivery has been accepted")
+              .plaintext("Your order has been delivered. Thanks for using our service")
               .build())
           .build();
 

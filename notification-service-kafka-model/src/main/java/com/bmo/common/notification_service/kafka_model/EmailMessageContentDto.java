@@ -1,9 +1,9 @@
-package com.bmo.common.notification_service.core.model.email;
+package com.bmo.common.notification_service.kafka_model;
 
 import lombok.Data;
 
 @Data
-public class EmailMessageContent {
+public class EmailMessageContentDto {
 
   private String plaintext;
 }

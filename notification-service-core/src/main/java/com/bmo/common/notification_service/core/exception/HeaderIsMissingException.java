@@ -1,12 +1,8 @@
 package com.bmo.common.notification_service.core.exception;
 
-public class EntityNotFoundException extends RuntimeException {
+public class HeaderIsMissingException extends RuntimeException {
 
-  public EntityNotFoundException(String entityName, Object id) {
-    super("Entity [%s] with id [%s] not found".formatted(entityName, id));
-  }
-
-  public EntityNotFoundException(String text) {
-    super(text);
+  public HeaderIsMissingException(String ... headerNames) {
+    super("%s Header(s) is missing".formatted(headerNames));
   }
 }

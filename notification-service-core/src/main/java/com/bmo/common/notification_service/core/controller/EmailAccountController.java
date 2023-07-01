@@ -1,11 +1,11 @@
-package com.bmo.common.notification_service.controller;
+package com.bmo.common.notification_service.core.controller;
 
-import com.bmo.common.notification_service.dbmodel.EmailAccount;
-import com.bmo.common.notification_service.mapper.EmailAccountMapper;
-import com.bmo.common.notification_service.model.rest.EmailAccountCreateDto;
-import com.bmo.common.notification_service.model.rest.EmailAccountResponseDto;
-import com.bmo.common.notification_service.model.rest.EmailAccountUpdateDto;
-import com.bmo.common.notification_service.service.EmailAccountService;
+import com.bmo.common.notification_service.core.dbmodel.EmailAccount;
+import com.bmo.common.notification_service.core.mapper.EmailAccountMapper;
+import com.bmo.common.notification_service.core.model.rest.EmailAccountCreateDto;
+import com.bmo.common.notification_service.core.model.rest.EmailAccountResponseDto;
+import com.bmo.common.notification_service.core.model.rest.EmailAccountUpdateDto;
+import com.bmo.common.notification_service.core.service.EmailAccountService;
 import java.util.List;
 import java.util.UUID;
 import javax.validation.Valid;

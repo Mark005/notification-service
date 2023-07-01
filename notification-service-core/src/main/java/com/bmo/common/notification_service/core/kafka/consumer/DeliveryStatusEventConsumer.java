@@ -1,7 +1,7 @@
-package com.bmo.common.market_service.core.kafka.consumer;
+package com.bmo.common.notification_service.core.kafka.consumer;
 
 import com.bmo.common.delivery_service.model.kafka.DeliveryStatusUpdateEvent;
-import com.bmo.common.market_service.core.service.DeliveryStatusUpdateEventHandler;
+import com.bmo.common.notification_service.core.service.DeliveryStatusUpdateEventHandler;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;

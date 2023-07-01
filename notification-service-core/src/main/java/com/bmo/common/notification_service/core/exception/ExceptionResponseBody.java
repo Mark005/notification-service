@@ -1,4 +1,4 @@
-package com.bmo.common.notification_service.exception;
+package com.bmo.common.notification_service.core.exception;
 
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;

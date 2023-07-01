@@ -1,1 +1,3 @@
 rootProject.name = 'notification-service'
+include 'notification-service-core'
+include 'notification-service-kafka-model'

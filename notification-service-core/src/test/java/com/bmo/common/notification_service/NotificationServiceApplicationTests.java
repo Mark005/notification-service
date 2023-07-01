@@ -1,4 +1,4 @@
-package com.bmo.common.notificationservice;
+package com.bmo.common.notification_service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

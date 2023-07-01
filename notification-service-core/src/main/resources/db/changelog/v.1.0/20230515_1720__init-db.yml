@@ -4,7 +4,7 @@ databaseChangeLog:
       author: Mark
       changes:
         - createTable:
-            tableName: delivery
+            tableName: email_account
             columns:
               - column:
                   name: id
@@ -12,4 +12,4 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     primaryKey: true
-                    primaryKeyName: delivery_pkey
+                    primaryKeyName: email_account_pkey

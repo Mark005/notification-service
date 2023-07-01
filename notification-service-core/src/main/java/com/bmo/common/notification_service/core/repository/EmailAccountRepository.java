@@ -1,8 +1,7 @@
-package com.bmo.common.notification_service.repository;
+package com.bmo.common.notification_service.core.repository;
 
-import com.bmo.common.notification_service.dbmodel.EmailAccount;
+import com.bmo.common.notification_service.core.dbmodel.EmailAccount;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

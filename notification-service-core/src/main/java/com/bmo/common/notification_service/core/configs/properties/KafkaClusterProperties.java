@@ -1,4 +1,4 @@
-package com.bmo.common.market_service.core.configs.properties;
+package com.bmo.common.notification_service.core.configs.properties;
 
 import java.util.List;
 import javax.validation.constraints.NotEmpty;

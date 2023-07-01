@@ -1,14 +1,16 @@
-package com.bmo.common.notification_service.model.email;
+package com.bmo.common.notification_service.core.model.email;
 
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 @Data
-@ToString
+@Builder
+@AllArgsConstructor
 public class EmailMessage {
-
-  private String from;
 
   private String subject;
 

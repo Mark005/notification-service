@@ -1,4 +1,4 @@
-package com.bmo.common.notification_service.configs;
+package com.bmo.common.notification_service.core.configs;
 
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.MapperConfig;
