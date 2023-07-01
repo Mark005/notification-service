@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: 202305151720-1
+      author: Mark
+      changes:
+        - createTable:
+            tableName: delivery
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: delivery_pkey

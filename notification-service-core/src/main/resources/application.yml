@@ -1,0 +1,33 @@
+server:
+  port: ${APPLICATION_PORT:8083}
+
+spring:
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:54326/postgres?currentSchema=delivery_service_schema}
+    username: ${DATABASE_USERNAME:postgres}
+    password: ${DATABASE_PASSWORD:postgres}
+    hikari:
+      maximum-pool-size: 10
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  liquibase:
+    change-log: db/changelog/db.changelog-master.yaml
+
+feign:
+  client:
+    config:
+      auth-service:
+        url: http://localhost:8081
+
+kafka:
+  producer:
+    delivery-status-event:
+      topic: ${DELIVERY_STATUS_EVENT_TOPIC:delivery-status-event-local}
+      cluster:
+        bootstrap-servers: ${DELIVERY_STATUS_EVENT_BOOTSTRAP_SERVERS:localhost:9092}

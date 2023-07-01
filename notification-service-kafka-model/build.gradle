@@ -1,0 +1,63 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.10'
+	id 'io.spring.dependency-management' version '1.1.0'
+	id 'org.liquibase.gradle' version '2.0.4'
+	id 'maven-publish'
+}
+
+group = 'com.bmo.common'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'com.vladmihalcea:hibernate-types-52:2.21.1'
+	implementation 'org.postgresql:postgresql'
+	implementation 'org.liquibase:liquibase-core'
+
+	implementation 'org.springframework.kafka:spring-kafka'
+
+	implementation 'commons-codec:commons-codec:1.13'
+
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	implementation 'org.springdoc:springdoc-openapi-ui:1.6.2'
+
+	implementation 'org.apache.httpcomponents:httpclient:4.5.14'
+	implementation 'io.jsonwebtoken:jjwt:0.9.1'
+
+	compileOnly 'javax.xml.bind:jaxb-api:2.3.1'
+	compileOnly 'org.mapstruct:mapstruct:1.5.1.Final', 'org.projectlombok:lombok'
+
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	annotationProcessor "org.mapstruct:mapstruct-processor:1.5.1.Final",
+			"org.projectlombok:lombok",
+			"org.projectlombok:lombok-mapstruct-binding:0.2.0"
+
+	liquibaseRuntime 'org.liquibase:liquibase-core:4.2.2'
+	liquibaseRuntime 'org.liquibase:liquibase-groovy-dsl:2.1.1'
+	liquibaseRuntime 'org.postgresql:postgresql'
+
+	implementation 'com.sun.mail:javax.mail:1.6.2'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
