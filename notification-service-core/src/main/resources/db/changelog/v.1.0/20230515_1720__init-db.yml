@@ -1,15 +1,36 @@
 databaseChangeLog:
   - changeSet:
-      id: 202305151720-1
+      id: 1688410338818-1
       author: Mark
       changes:
         - createTable:
             tableName: email_account
             columns:
               - column:
-                  name: id
-                  type: UUID
                   constraints:
                     nullable: false
                     primaryKey: true
                     primaryKeyName: email_account_pkey
+                  name: id
+                  type: UUID
+              - column:
+                  name: connection_timeout
+                  type: INTEGER
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+              - column:
+                  name: fallback_priority
+                  type: INTEGER
+              - column:
+                  name: host
+                  type: VARCHAR(255)
+              - column:
+                  name: password
+                  type: VARCHAR(255)
+              - column:
+                  name: port
+                  type: INTEGER
+              - column:
+                  name: timeout
+                  type: INTEGER
