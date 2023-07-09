@@ -76,6 +76,11 @@ dependencyManagement {
 	}
 }
 
+jar {
+	//disable generating '*-plain.jar'
+	enabled = false
+}
+
 tasks.named('test') {
 	useJUnitPlatform()
 }
