@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class DeliveryAcceptedNotification implements NotificationProcessor<DeliveryStatusUpdateEvent> {
+public class DeliveryReadyForTakeawayNotification implements NotificationProcessor<DeliveryStatusUpdateEvent> {
 
   private final EmailSenderService emailSenderService;
   private final UserSocketService userSocketService;
@@ -23,7 +23,7 @@ public class DeliveryAcceptedNotification implements NotificationProcessor<Deliv
 
   @Override
   public boolean filterNotification(DeliveryStatusUpdateEvent event) {
-    return event.getStatus() == DeliveryStatusDto.ACCEPTED;
+    return event.getStatus() == DeliveryStatusDto.READY_TO_TAKEAWAY;
   }
 
   @Override
@@ -34,7 +34,7 @@ public class DeliveryAcceptedNotification implements NotificationProcessor<Deliv
         userId,
         DeliveryStatusUpdatedMessage.builder()
             .newDeliveryStatus(message.getStatus().name())
-            .message("Delivery accepted")
+            .message("Your order with id: %s, is ready for takeaway".formatted(message.getOrderId()))
             .build());
 
     if (!isSentBySocket) {
@@ -42,9 +42,10 @@ public class DeliveryAcceptedNotification implements NotificationProcessor<Deliv
 
       EmailMessage emailMessage = EmailMessage.builder()
           .to(user.getEmail())
-          .subject("Delivery accepted")
+          .subject("Order ready for takeaway")
           .message(EmailMessageContent.builder()
-              .plaintext("Your delivery has been accepted")
+              .plaintext("Your order with id: %s, is ready for takeaway"
+                  .formatted(message.getOrderId()))
               .build())
           .build();
 
